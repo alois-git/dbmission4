@@ -28,6 +28,7 @@ BEGIN
   newOrderId := oldOrderId+1; 
   insert into orderdb(orderId,orderTime,tokenId) VALUES (newOrderId,CURRENT_TIMESTAMP,tokenId);
   FOR I IN 1..array_length(drinks,1) LOOP 
+    /* 1 = drinkid 2= qty*/
     insert into orderedDrink(orderId,drinkId,qty) VALUES (newOrderId,drinks[i][1],drinks[i][2]);
   END LOOP;
   RETURN newOrderId;
