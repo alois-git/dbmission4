@@ -36,5 +36,46 @@ END;
 $$ LANGUAGE PLPGSQL;
 
 
+CREATE OR REPLACE FUNCTION issueTicket(tokenIdParam integer) RETURNS TEXT AS $$
+DECLARE
+ Total decimal;
+ Items text;
+ Item text;
+ Qty text;
+ curs refcursor;
+BEGIN 
+  SELECT COALESCE(SUM(d.qty*dr.price),0) INTO Total from client as c left join orderdb as o on o.tokenId = c.tokenId left join orderedDrink as d on d.orderId = o.orderId left join Drink as dr on d.drinkId = dr.drinkId where c.tokenId = tokenIdParam group by c.tokenId ;
+  OPEN curs FOR SELECT dr.name,SUM(d.qty) as qty from client as c left join orderdb as o on o.tokenId = c.tokenId left join orderedDrink as d on d.orderId = o.orderId left join Drink as dr on d.drinkId = dr.drinkId where c.tokenId = tokenIdParam group by name;
+  Items := ' Ticket : ';
+  FETCH curs INTO Item, Qty; 
+  WHILE Item is not NULL LOOP
+   Items := Items || Item || ' : ' || Qty || ' ';
+   FETCH curs INTO Item, Qty;
+  END LOOP; 
+  Items := Items || 'Total' || ' : ' || Total;
+  RETURN Items;
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE FUNCTION payTable(tokenIdParam integer, amount decimal) RETURNS TEXT AS $$
+DECLARE
+   amountDue decimal;
+BEGIN 
+  IF EXISTS (SELECT tableId FROM placement WHERE tokenId = tokenIdParam) THEN  
+     select total into amountDue from clientAmount where tokenId = tokenIdParam; 
+     IF amount >= amountDue then
+       DELETE FROM placement as p where p.tokenId = tokenIdParam;
+       RETURN 'done';
+     ELSE
+       RETURN 'not enough money';
+     END IF;
+  ELSE 
+    RETURN 'client token invalid';
+  END IF;
+END;
+$$ LANGUAGE PLPGSQL;
+
+
+
 
 
