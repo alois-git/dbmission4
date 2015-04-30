@@ -8,7 +8,7 @@ BEGIN
   select MAX(tokenId) INTO A from client;
   newTokenId := A+1;
   insert into client(tokenId) VALUES (newTokenId); 
-  insert into placement(tableId,tokenId) VALUES (tableBarCode,newTokenId)
+  insert into placement(tableId,tokenId) VALUES (tableBarCode,newTokenId);
   RETURN newTokenId;
  ELSE
   RETURN -1;
