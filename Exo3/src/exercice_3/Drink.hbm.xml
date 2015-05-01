@@ -6,7 +6,7 @@
     <class name="exercice_3.Drink" table="DRINK">
         <id name="id" type="long">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="price" type="double">
             <column name="PRICE" />

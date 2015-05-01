@@ -4,11 +4,11 @@
 <!-- Generated May 1, 2015 12:40:52 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="exercice_3.OrderedDrink" table="ORDEREDDRINK">
-        <id name="drink" type="int">
-            <column name="DRINK" />
-            <generator class="assigned" />
-        </id>
-        <property name="qty" type="long">
+        <composite-id>
+            <key-many-to-one name="drink" class="exercice_3.Drink" column="drinkId"/>
+            <key-many-to-one name="order" class="exercice_3.Order" column="orderId"/>
+        </composite-id>
+        <property name="qty" type="int">
             <column name="QTY" />
         </property>
     </class>

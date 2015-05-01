@@ -7,9 +7,9 @@ DELETE FROM tabledb;
 DELETE FROM client;
 
 INSERT INTO tabledb (id, codebar, isFree) VALUES
-  (0,0,true),
-  (1,1,true),
-  (2,2,true),
+  (0,0,false),
+  (1,1,false),
+  (2,2,false),
   (3,3,true);
 
 INSERT INTO client(id, amountDue) VALUES
@@ -39,6 +39,3 @@ INSERT INTO orderedDrink(orderId,drinkId,qty) VALUES
 
 INSERT INTO payment(id, amountPaid, tokenId) VALUES
   (0, 10, 1);
-
-
-  

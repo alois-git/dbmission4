@@ -7,15 +7,14 @@ DROP TABLE IF EXISTS tabledb CASCADE;
 DROP TABLE IF EXISTS client CASCADE;
 
 CREATE TABLE tabledb (
-  id integer primary key NOT NULL,
+  id serial primary key NOT NULL,
   codebar integer NOT NULL,
   isFree boolean not NULL
 );
 
 CREATE TABLE client (
-  id integer primary key NOT NULL,
+  id serial primary key NOT NULL,
   amountDue numeric NOT NULL
-
 );
 
 /* We modify the entity relational diagram because when a client leave he should have no table. (1,1) -> (0,1) for client to table */
@@ -28,14 +27,14 @@ CREATE TABLE placement (
 );
 
 CREATE TABLE payment (
-  id integer primary key NOT NULL,
+  id serial primary key NOT NULL,
   amountPaid decimal NOT NULL,
   tokenId integer NOT NULL,
   foreign key (tokenId) references client (id)
 );
 
 CREATE TABLE orderdb (
-  id integer NOT NULL,
+  id serial NOT NULL,
   orderTime timestamp NOT NULL,
   tokenId integer NOT NULL,
   primary key (id),
@@ -43,20 +42,17 @@ CREATE TABLE orderdb (
 );
 
 CREATE TABLE drink (
-  id integer primary key NOT NULL,
+  id serial primary key NOT NULL,
   price decimal NOT NULL,
   name varchar(30) NOT NULL,
   description varchar(150) NOT NULL
 );
 
 CREATE TABLE orderedDrink (
-  qty integer NOT NULL,
+  qty serial NOT NULL,
   orderId integer NOT NULL,
   drinkId integer NOT NULL,
   primary key (orderId, drinkId),
   foreign key (orderId) references orderdb (id),
   foreign key (drinkId) references drink (id)
 );
-
-
-	

@@ -3,9 +3,13 @@ package exercice_3;
 public class Drink {
 	private long id;
 	private double price;
-	private String name; 
+	private String name;
 	private String description;
-	
+
+	public Drink(){
+
+	}
+
 	public Drink(long id, double price, String name, String description) {
 		super();
 		this.id = id;
@@ -45,5 +49,5 @@ public class Drink {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }

@@ -5,16 +5,16 @@ public class Table {
 	private long codebar;
 	private boolean isFree;
 
-        public Table(){
-        }
-	
+  public Table(){
+  }
+
 	public Table(long id, long codebar, boolean isFree) {
 		super();
 		this.id = id;
 		this.codebar = codebar;
 		this.isFree = isFree;
 	}
-	
+
 	public Table(long id) {
 		super();
 		this.id = id;

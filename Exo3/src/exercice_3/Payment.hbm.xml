@@ -6,7 +6,7 @@
     <class name="exercice_3.Payment" table="PAYMENT">
         <id name="id" type="long">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="amountPaid" type="double">
             <column name="AMOUNTPAID" />

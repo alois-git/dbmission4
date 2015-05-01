@@ -6,7 +6,7 @@
     <class name="exercice_3.Table" table="TABLEDB">
         <id name="id" type="long">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="codebar" type="long">
             <column name="CODEBAR" />

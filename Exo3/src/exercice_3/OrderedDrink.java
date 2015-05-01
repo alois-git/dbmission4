@@ -1,13 +1,28 @@
 package exercice_3;
+import java.io.Serializable;
 
-public class OrderedDrink {
+public class OrderedDrink implements Serializable{
+	private Order order;
 	private Drink drink;
-	private long qty;
-	
-	public OrderedDrink(Drink drink, long qty) {
+	private int qty;
+
+	public OrderedDrink(){
+		
+	}
+
+	public OrderedDrink(Order order,Drink drink, int qty) {
 		super();
 		this.drink = drink;
 		this.qty = qty;
+		this.order = order;
+	}
+
+	public Order getOrder(){
+		return order;
+	}
+
+	public void setOrder(Order o){
+		this.order = o;
 	}
 
 	public Drink getDrink() {
@@ -18,13 +33,13 @@ public class OrderedDrink {
 		this.drink = drink;
 	}
 
-	public long getQty() {
+	public int getQty() {
 		return qty;
 	}
 
-	public void setQty(long qty) {
+	public void setQty(int qty) {
 		this.qty = qty;
 	}
-	
-	
+
+
 }

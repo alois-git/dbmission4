@@ -3,23 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated May 1, 2015 12:40:52 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="exercice_3.Order" table="ORDERDB">
-        <id name="id" type="long">
-            <column name="ID" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="client" class="exercice_3.Client" fetch="join">
-            <column name="CLIENT" />
-        </many-to-one>
-        <property name="date" type="java.sql.Date">
-            <column name="DATE" />
-        </property>
-        <list name="comand" inverse="false" table="ORDEREDDRINK" lazy="true">
-            <key>
-                <column name="ID" />
-            </key>
-            <list-index></list-index>
-            <one-to-many class="exercice_3.OrderedDrink" />
-        </list>
+  <class name="exercice_3.Order" table="ORDERDB">
+    <id name="id" type="long">
+      <column name="ID" />
+      <generator class="identity" />
+    </id>
+    <many-to-one name="client" class="exercice_3.Client" fetch="join">
+      <column name="tokenId" />
+    </many-to-one>
+    <property name="date" type="java.sql.Date">
+      <column name="orderTime" />
+    </property>
     </class>
-</hibernate-mapping>
+  </hibernate-mapping>

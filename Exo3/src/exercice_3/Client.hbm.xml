@@ -6,7 +6,7 @@
     <class name="exercice_3.Client" table="CLIENT">
         <id name="id" type="long">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="amountDue" type="double">
             <column name="AMOUNTDUE" />

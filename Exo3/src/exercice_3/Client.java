@@ -3,7 +3,11 @@ package exercice_3;
 public class Client {
 	private long id;
 	private double amountDue;
-	
+
+	public Client(){
+		this.amountDue = 0;
+	}
+
 	public Client(long id, double amountDue) {
 		super();
 		this.id = id;
