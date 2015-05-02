@@ -1,12 +1,13 @@
 <project name="Exercice3" default="dist" basedir=".">
   <description>
-    build file for exo 3
+    build file for exo 3 and exo 2
   </description>
 
   <property name="src" location="src"/>
   <property name="build" location="build"/>
   <property name="lib" location="lib"/>
   <property name="dist" location="dist"/>
+
   <path id="libraries">
     <fileset dir="${lib}">
       <include name="*.jar" />
@@ -46,7 +47,7 @@
     <delete dir="${dist}"/>
   </target>
 
-  <target name="hbm2java" description="Generate .java from .hbm files.">
+   <target name="hbm2java" description="Generate .java from .hbm files.">
     <taskdef name="hibernatetool"
       classname="org.hibernate.tool.ant.HibernateToolTask"
       classpathref="libraries" />
@@ -61,7 +62,14 @@
       </hibernatetool>
     </target>
 
-    <target name="run" depends="compile">
+   <target name="run2" depends="compile">
+      <java fork="true" classname="exercice_2.exercice_2" classpathref="libraries">
+        <classpath path="${build}"/>
+        <arg value="${action}"/>
+      </java>
+    </target>
+
+    <target name="run3" depends="compile">
       <java fork="true" classname="exercice_3.Scenario" classpathref="libraries">
         <classpath path="${build}"/>
         <arg value="${action}"/>
