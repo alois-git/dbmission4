@@ -52,6 +52,7 @@ public class Scenario {
 			orderDrinks.put(d,1);
 			clientManager.orderDrinks(client,orderDrinks);
 
+
 			// pay 20$ and leave
 			System.out.println("leave the table and pay 20$");
 			clientManager.payTable(client, 20.0);

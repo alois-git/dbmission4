@@ -92,7 +92,12 @@ public class ClientManager {
 
 
     for (OrderedDrink d : drinkList){
-      drinks.put(d.getDrink(),d.getQty());
+      Integer qty = drinks.get(d.getDrink());
+      if (qty != null){
+             drinks.put(d.getDrink(),qty + d.getQty());
+      }else{
+	drinks.put(d.getDrink(),d.getQty()); 
+	}
     }
     return drinks;
   }
