@@ -1,0 +1,80 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[frenchb]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[Conny]{fncychap}
+\usepackage{enumerate}
+\title{LINGI2132 : Database \\ Mission 3}
+\author{ Arnold Moyaux and Alois Paulus }
+
+\begin{document}
+
+\maketitle
+
+\section{Exercice 1}
+
+\subsection{How to run}
+
+\begin{enumerate}
+\item Create a new postgres database (remember the name for exercice 2)
+\item run the script Exo_1_2_sql/data.sql
+\item run the script Exo_1_2_sql/filldb.sql
+\item run the script Exo_1_2_sql/view.sql
+\item run the script Exo_1_2_sql/procedure.sql
+\item To launch the scenario, run the script Exo_1_2_sql/scenario.sql
+\item You should see the ouput of the scenario.
+\end{enumerate}
+
+\subsection{Explanations}
+
+In the database we did not put any dereived attribute to avoir redondency, we created view which compute them. 
+We created the placement database to store the current Client sitted at a table, the goal is to allow order only for sat client.
+We didn't create any triggers because the database constraints are strong enough to ensure data integrity.
+
+In the procedure.sql we create all the procedures needed in the scenario and asked in the PDF. Scenario.sql call these procedures. 
+
+\section{Exercice 2}
+
+\subsection{How to run}
+\begin{enumerate}
+\item open file Exo_2_3_java/src/exercice_2/exercice2.java
+\item modify the parameter for the sql connection at line 25
+connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/databasename_fromexercice1","username","password");
+\item save 
+\item go to Exo_2_3_java folder 
+\item command : ant (to compile) 
+\item command : ant run2 (to launch)
+\end{enumerate}
+
+Be sure to have ant installed (apt-get install ant)
+
+\subsection{Explanations}
+
+In the exercice2.java, it connect to the database and then we use a java function that call the sql procedures.
+
+\section{Exercice 3}
+
+\subsection{How to run}
+\begin{enumerate}
+\item Create a new database 
+\item run the script Exo_3_sql/data.sql
+\item run the script Exo_3_sql/filldb.sql
+\item open file Exo_2_3_java/hibernate.cfg.xml (to configure sql connection for hibernate)
+\item modify hibernate.connection.username (line 13) with your username
+\item modify hibernate.connection.password (line 14) with your password
+\item modify hibernate.connection.path (line 15) with your database path similar to exercice 2
+\item save 
+\item go to Exo_2_3_java folder 
+\item command : ant clean (to clean) 
+\item command : ant (to compile) 
+\item command : ant run3 (to launch)
+\end{enumerate}
+
+\subsection{Explanations}
+We choose Hibernate as the ORM using java. We created the database manually and did not let the ORM to do all the work because we wanted to keep control on the sql schema. 
+
+We created the objects in java and the corresponding mapping files (hbm.xml) for Hibernate. 
+For the function we created manager classes which create a session with the database (only used for storage) and used java code for calculation instead of SQL like the 2 previous exercices.  
+
+\end{document}
