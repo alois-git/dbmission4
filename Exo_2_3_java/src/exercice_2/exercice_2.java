@@ -19,7 +19,7 @@ public class exercice_2 {
 		}
 		
 		Connection connection = null;
-		
+		// Connection to database.
 		// You need to introduce correct data for connecting the database.
 		try {
 			//getConnection(String url, String user, String password)
@@ -30,7 +30,6 @@ public class exercice_2 {
 		}
 		
 		if (connection != null) {
-			//TODO generer une table free.
 			//SITDOWN
 			CallableStatement stmt = connection.prepareCall(" { ? = call sitdown(3)}");
 			stmt.registerOutParameter(1, Types.INTEGER);
@@ -41,12 +40,12 @@ public class exercice_2 {
 				System.out.println("table is not free");
 			}
 			else{
-				//ORDERDRINKS
+				//Call to ORDERDRINKS
 				stmt = connection.prepareCall(" { call orderDrinks(?, array[[2,1]])}");
 				stmt.setInt(1, token);
 				stmt.execute();
 				stmt.close();
-				//ISSUETICKET
+				//Call to ISSUETICKET
 				stmt = connection.prepareCall(" {? = call issueTicket(?) }");
 				stmt.registerOutParameter(1, Types.VARCHAR);
 				stmt.setInt(2, token);
@@ -54,12 +53,12 @@ public class exercice_2 {
 				String ticket = stmt.getString(1);
 				stmt.close();
 				System.out.println(ticket);
-				//ORDERDRINKS
+				//Call to ORDERDRINKS
 				stmt = connection.prepareCall(" { call orderDrinks(?, array[[2,1]])}");
 				stmt.setInt(1, token);
 				stmt.execute();
 				stmt.close();
-				//PAY
+				//Call to PAY
 				stmt = connection.prepareCall(" { ? = call payTable(?, 20) }");
 				stmt.registerOutParameter(1, Types.VARCHAR);
 				stmt.setInt(2, token);

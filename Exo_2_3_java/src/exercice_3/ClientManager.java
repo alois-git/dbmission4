@@ -11,7 +11,7 @@ import org.hibernate.criterion.Restrictions;
 
 public class ClientManager {
 
-
+  //The client pay his table with amount.
   public static void payTable(Client client, double amount){
     System.out.println("paytable");
     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -20,11 +20,13 @@ public class ClientManager {
     placCrit.add(Restrictions.eq("client", client));
     Placement placement = (Placement) placCrit.uniqueResult();
 
+  //Check if client has a table
     if (placement == null){
       System.out.println("You did not have any table");
       return;
     }
 
+    //Check if client amount is enough
     double total = getTotalTicket(getTicket(client));
     if (amount < total){
       System.out.println("not enough !");
@@ -63,6 +65,7 @@ public class ClientManager {
     session.getTransaction().commit();
   }
 
+  //print ticket for client.
   public static void issueTicket(Client client){
     HashMap<Drink,Integer> drinks = getTicket(client);
 
@@ -74,6 +77,7 @@ public class ClientManager {
     System.out.println("Total :" + getTotalTicket(drinks));
   }
 
+  //return a map <Drink,qty> for a client
   public static HashMap<Drink,Integer> getTicket(Client client){
     HashMap<Drink,Integer> drinks = new HashMap<Drink,Integer>();
 
@@ -96,12 +100,13 @@ public class ClientManager {
       if (qty != null){
              drinks.put(d.getDrink(),qty + d.getQty());
       }else{
-	drinks.put(d.getDrink(),d.getQty()); 
-	}
+				drinks.put(d.getDrink(),d.getQty()); 
+			}
     }
     return drinks;
   }
 
+  //return totat amount due for a ticket.
   public static double getTotalTicket(HashMap<Drink,Integer> list){
     double price = 0.0;
     for (Map.Entry <Drink, Integer> entry : list.entrySet()){
