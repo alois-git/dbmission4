@@ -22,6 +22,7 @@ public class exercice_2 {
 		
 		// You need to introduce correct data for connecting the database.
 		try {
+			//getConnection(String url, String user, String password)
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/exercice_1","postgres","a");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
